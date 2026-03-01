@@ -33,7 +33,7 @@ from fpdf import FPDF
 import io
 
 # --- 1. CONFIGURATION & MOCK DATA ---
-st.set_page_config(page_title="SRC Board Suite", layout="wide")
+st.set_page_config(page_title="Board Suite", layout="wide")
 
 # Static data from 2024 Financial Highlights
 TOTAL_ASSETS = 138871
@@ -54,7 +54,7 @@ final_reserve = BASE_UNRESTRICTED + rev_impact - extra_spend
 final_ratio = final_reserve / adj_budget
 
 # --- 4. DASHBOARD UI ---
-st.title("📊 Singapore Red Cross: Strategic Board Suite")
+st.title("📊 Strategic Board Suite")
 st.markdown("### Interactive Financial Position & Stress Test")
 
 # KPI Row
@@ -96,7 +96,7 @@ def generate_pdf(reserve, ratio, fig_obj):
     pdf = FPDF()
     pdf.add_page()
     pdf.set_font("Arial", 'B', 16)
-    pdf.cell(200, 10, txt="SRC Strategic Simulation Report", ln=True, align='C')
+    pdf.cell(200, 10, txt="Strategic Simulation Report", ln=True, align='C')
     pdf.ln(10)
     pdf.set_font("Arial", size=12)
     pdf.cell(200, 10, txt=f"Projected Reserve: SGD {reserve:,.0f}k", ln=True)
@@ -113,4 +113,4 @@ def generate_pdf(reserve, ratio, fig_obj):
 st.divider()
 if st.button("📥 Export Current Scenario to PDF"):
     pdf_bytes = generate_pdf(final_reserve, final_ratio, fig_line)
-    st.download_button("Click here to Download PDF", data=pdf_bytes, file_name="SRC_Board_Report.pdf")
+    st.download_button("Click here to Download PDF", data=pdf_bytes, file_name="Board_Report.pdf")
